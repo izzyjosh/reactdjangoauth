@@ -1,20 +1,25 @@
 import useForm from "./UseForm";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
 
-function Signin() {
+function Signin({ data }) {
   const formData = {
     username: "",
     password: ""
   };
+
+  console.log("this is it");
+  console.log(data);
+
   const [fields, handleChange] = useForm(formData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const handleSubmit = async e => {
     e.preventDefault();
-    setLoading(true);
 
+    loginUser(fields);
+    /*setLoading(true);
     try {
       const response = await fetch("http://127.0.0.1:8000/api/token/", {
         method: "POST",
@@ -32,7 +37,7 @@ function Signin() {
     } catch (error) {
       setError(error);
       setLoading(false);
-    }
+    }*/
   };
 
   return (

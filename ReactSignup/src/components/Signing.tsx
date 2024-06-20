@@ -1,15 +1,12 @@
 import useForm from "./UseForm";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 
-function Signin({ data }) {
+function Signin() {
   const formData = {
     username: "",
     password: ""
   };
-
-  console.log("this is it");
-  console.log(data);
 
   const [fields, handleChange] = useForm(formData);
   const [loading, setLoading] = useState(false);
@@ -18,8 +15,7 @@ function Signin({ data }) {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    loginUser(fields);
-    /*setLoading(true);
+    setLoading(true);
     try {
       const response = await fetch("http://127.0.0.1:8000/api/token/", {
         method: "POST",
@@ -37,7 +33,8 @@ function Signin({ data }) {
     } catch (error) {
       setError(error);
       setLoading(false);
-    }*/
+      alert("incorrect password or username")
+    }
   };
 
   return (
@@ -66,7 +63,7 @@ function Signin({ data }) {
         {loading && <button disabled>Logging in...</button>}
         {!loading && <button>Sign Up</button>}
         <p>
-          Don't have an account ? <Link to="/">Signup</Link>
+          Don't have an account ? <Link to="/signup">Signup</Link>
         </p>
       </form>
     </div>

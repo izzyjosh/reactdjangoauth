@@ -1,7 +1,9 @@
 import useForm from "./UseForm";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 function Signup() {
+  const navigate = useNavigate();
   const formData = {
     username: "",
     email: "",
@@ -32,8 +34,8 @@ function Signup() {
       }
       const jsonData = await response.json();
       setData("signup complete");
-      console.log(jsonData);
       setLoading(false);
+      navigate("/");
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -72,7 +74,7 @@ function Signup() {
         {loading && <button disabled>Signing Up...</button>}
         {!loading && <button>Sign Up</button>}
         <p>
-          Already have an account ? <Link to="/signin">Signin</Link>
+          Already have an account ? <Link to="/">Signin</Link>
         </p>
       </form>
     </div>
